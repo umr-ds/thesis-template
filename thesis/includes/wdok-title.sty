@@ -1,0 +1,142 @@
+%%
+%% wdok-title
+%% @(#) Time-stamp: <2005-04-20T17:36:45 mxp>
+%% Created by Michael Piotrowski <mxp@iws.cs.uni-magdeburg.de>
+
+%% NOTE:  This package is only usable with the mparticle and mpreport
+%% classes because it uses variables defined there (prefixed with mp@).
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{wdok-title}[2005/01/10 Title page for WDOK theses]
+
+\RequirePackage{graphicx}
+\RequirePackage{ifthen}
+\RequirePackage{keyval}
+
+%% To add flexibility, we will not use the ordinary processing of
+%% package options, but put them through the |keyval| package.
+%% This section is from the |hyperref| package.
+\def\ProcessOptionsWithKV#1{%
+  \let\@tempa\@empty
+  \@for\CurrentOption:=\@classoptionslist\do{%
+    \@ifundefined{KV@#1@\CurrentOption}%
+    {}%
+    {\edef\@tempa{\@tempa,\CurrentOption,}}}%
+  \edef\@tempa{%
+    \noexpand\setkeys{#1}{\@tempa\@ptionlist{\@currname.\@currext}}}%
+  \@tempa
+  \AtEndOfPackage{\let\@unprocessedoptions\relax}}
+
+%% Declare the options.
+\newcommand{\@wdoktitletype}{diplom}
+\define@key{wdoktitle}{type}{\renewcommand{\@wdoktitletype}{#1}}
+\newcommand{\@wdoktitlelang}{de}
+\define@key{wdoktitle}{lang}{\renewcommand{\@wdoktitlelang}{#1}}
+
+%% Process them.
+\ProcessOptionsWithKV{wdoktitle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifthenelse{\equal{\@wdoktitlelang}{de}}{%
+  \ifthenelse{\equal{\@wdoktitletype}{bachelor}}%
+    {\newcommand{\@thesisname}{Bachelor-Thesis}}{}
+  \ifthenelse{\equal{\@wdoktitletype}{master}}%
+    {\newcommand{\@thesisname}{Master-Thesis}}{}
+  \ifthenelse{\equal{\@wdoktitletype}{diplom}}%
+    {\newcommand{\@thesisname}{Diplomarbeit}}{}
+  }
+
+\ifthenelse{\equal{\@wdoktitlelang}{en}}{%
+  \ifthenelse{\equal{\@wdoktitletype}{bachelor}}%
+    {\newcommand{\@thesisname}{Bachelors's Thesis}}{}
+  \ifthenelse{\equal{\@wdoktitletype}{master}}%
+    {\newcommand{\@thesisname}{Master's Thesis}}{}
+  \ifthenelse{\equal{\@wdoktitletype}{diplom}}%
+    {\newcommand{\@thesisname}{Diplom's Thesis}}{}
+  }
+
+\ifthenelse{\equal{\@wdoktitlelang}{de}}%
+  {\newcommand{\@supervisortext}{Betreuer}}{}%
+\ifthenelse{\equal{\@wdoktitlelang}{en}}%
+  {\newcommand{\@supervisortext}{Supervisor}}{}%
+
+\ifthenelse{\equal{\@wdoktitlelang}{de}}%
+  {\newcommand{\@readertext}{Gutachter}}{}%
+\ifthenelse{\equal{\@wdoktitlelang}{en}}%
+  {\newcommand{\@readertext}{Reader}}{}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\newcommand{\reader}[1]{\def\@reader{#1}}
+
+\renewcommand{\maketitle}{%
+  \begin{titlepage}%
+    %%
+    \def\fakultaet{FACHBEREICH MATHEMATIK UND INFORMATIK}
+    \par\hspace{-\mp@margwd}%
+    \unitlength1mm
+    \begin{picture}(-2,12)
+      \put(-1,11){\rule{\mp@fullwd}{1mm}}
+
+      %\put(-4,-17){
+      \put(80,-12){
+        \parbox[b]{85mm}{% was 140mm
+          \raggedleft{
+            \fontsize{12}{14}\selectfont
+            %PHILIPPS-UNIVERSIT\"AT MARBURG\\
+            ~\\
+            \fontfamily{ptm}\fontsize{8}{12}\selectfont \fakultaet\\
+            Arbeitsgruppe Verteilte Systeme\\
+            ~\\
+          }%
+        }%
+      }%
+      \put(0,-18){\includegraphics[height=27mm]{includes/siegel-philipp-new}}%was 140-20
+%      \@ifundefined{pdfoutput}{
+%        \put(140,-20){\includegraphics[height=30mm]{ovgu-siegel.eps}}
+%      }
+%      {
+%        \put(140,-20){\includegraphics[height=30mm]{ovgu-siegel.pdf}}
+%      }
+      \put(-1,-20){\rule{\mp@fullwd}{.25mm}}
+    \end{picture}
+    
+    %% typeset the title
+    \vspace{5cm}
+    \begin{flushleft}
+      \sffamily\huge
+      \@thesisname\\[1ex]
+      \@title\\[1ex]
+      \normalsize
+      \@author\\
+      % XXXXXXXXXXXXXXXX Add date here XXXXXXXXXXXXXXXXXXX
+		\today
+      \vspace{1cm}
+      \@ifundefined{@supervisor}{}
+      {
+        \par
+        \textbf{\@supervisortext}\\
+        \@supervisor
+      }
+      \@ifundefined{@reader}{}
+      {
+        \par
+        \textbf{\@readertext}\\
+        \@reader
+      }
+      %%
+      \vfill
+      Philipps-Universität Marburg\\
+      Fachbereich Mathematik und Informatik\\
+      Hans-Meerwein-Straße\\
+      35032 Marburg
+    \end{flushleft}
+
+    \hspace{-\mp@margwd}%
+    \rule{\mp@margwd}{2.25mm}%
+    \hspace{-\mp@margwd}%
+    \rule{\mp@fullwd}{.25mm}%
+  \end{titlepage}%
+}

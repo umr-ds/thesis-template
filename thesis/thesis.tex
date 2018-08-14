@@ -1,0 +1,193 @@
+\documentclass[
+	a4paper,
+	11pt,
+	% oneside,
+	twoside,
+	% openright,
+	final,
+	% draft,
+]{includes/mpreport}
+
+\usepackage[type=bachelor, lang=de]{includes/wdok-title}
+
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+\usepackage{bibentry}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage[hyperfootnotes=false, plainpages=false, pdfpagelabels]{hyperref}	
+\usepackage{makeidx}
+\usepackage{listings}	
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage[smaller]{acronym}
+\usepackage{tabularx}
+\usepackage{ntheorem}
+\usepackage{array}
+\usepackage[justification=raggedleft]{caption}
+\usepackage{relsize}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage{subfig}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage[breakall]{truncate}
+\usepackage[ngerman]{babel}
+\usepackage{acronym}
+\usepackage{pdfpages}
+\usepackage[normalem]{ulem}
+\input{includes/listings}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{4}
+
+% Einrückung der ersten Zeile eines Absatzes
+% \parindent3mm
+
+\newcommand{\thesisTitle}{Software-definierte dynamische Thesis}
+\newcommand{\thesisAuthor}{John Doe}
+\newcommand{\thesisSupervisor}{Prof. Dr. Bernd Freisleben}
+\newcommand{\thesisReader}{Prof. Dr. Bernd Freisleben}
+\newcommand{\thesisDate}{01. Januar 1970}
+
+% Title page information
+\title{\thesisTitle{}}
+\author{\thesisAuthor{}}
+\supervisor{Mitarbeiter Name}
+\reader{Prof. Dr. Bernd Freisleben}
+
+% Setzen der Meta-Daten
+\hypersetup{
+	pdftitle={\thesisTitle{}},
+	pdfauthor={\thesisAuthor{}},
+	pdfkeywords={Thesis, Abschlussarbeit, \thesisTitle{}, \thesisAuthor{}, \thesisSupervisor{}},
+	pdfsubject={\thesisTitle{}}
+}
+
+% Konfiguration der Listings im Dokument
+% more info: http://www.theofel.de/archives/2004/10/source_code_in.html
+\renewcommand{\ttdefault}{pcr}\par
+\lstset{
+	numbers=left, 				% show line numbers on the left
+	stepnumber=1, 				% show every  line number
+	numberstyle=\small, 			% font sitze of line numbers
+	numbersep=5pt, 				% separation to the text
+	language=Bash,				% language of source
+	basicstyle=\footnotesize\ttfamily,	% generic style
+	stringstyle=\color{blue},		% style of strings
+	emphstyle=\color{red},			% sytle of ???
+	commentstyle=\color{green},		% style of comments
+	keywordstyle=\bfseries,			% style of keywords
+	tabsize=4,				% indentation
+	showspaces=false,			% show spaces
+	showtabs=false,				% show tabs
+	showstringspaces=false,			% show spaces in strings
+	breaklines=true,			% breaks long lines
+	frame=tbl 				% can be: none, single, trbl (or trBL, ...), shadowbox
+}
+
+% Festlegung Art der Zitierung - Havardmethode: Abkuerzung Autor + Jahr
+\bibliographystyle{alpha}
+
+% Zeilenabstand
+\usepackage{setspace}
+%\doublespacing    % doppelzeilig oder
+\onehalfspacing  % anderthalbzeilig
+
+% Hurenkinder und Schusterjungen werden vermieden
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Hier beginnt das eigentliche Dokument
+\begin{document}
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+% Ab jetzt römische Seitenzahlen
+\renewcommand{\thepage}{\Roman{page}}
+\setcounter{page}{1}
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+\include{chapters/00_Abstract}
+
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+\tableofcontents
+
+\cleardoublepage
+% Ab jetzt arabische Seitenzahlen
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\include{chapters/01_Einleitung}
+% \include{chapters/02_Grundlagen}
+% \include{chapters/03_RelatedWork}
+% \include{chapters/04_Design}
+% \include{chapters/05_Implementierung}
+% \include{chapters/06_Evaluation}
+% \include{chapters/07_Zusammenfassung}
+
+
+% 2 Seiten frei, damit der umbruch stimmt
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+% Im Anhang werden wieder Römische Seitenzahlen verwendet
+\renewcommand{\thepage}{\Roman{page}}
+\setcounter{page}{1}
+% \appendix
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliography{literature}
+\newpage
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+\newpage
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\include{appendix/acronyms}
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Listings}
+\lstlistoflistings
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendix}
+\chapter*{Appendix}
+
+
+
+\include{includes/erklaerung}
+
+\end{document}
