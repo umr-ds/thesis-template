@@ -1,0 +1,11 @@
+thesis/**/*.lb
+thesis/**/*.aux
+thesis/**/*.lof
+thesis/**/*.log
+thesis/**/*.lol
+thesis/**/*.lot
+thesis/**/*.out
+thesis/**/*.pdf
+thesis/**/*.synctex.gz
+thesis/**/*.thm
+thesis/**/*.toc
