@@ -274,9 +274,9 @@
 
 %% Footnote style
 %%
-%% "Da� man auch den Noten selbst diese kleine hochstehende Ziffer
+%% "Daß man auch den Noten selbst diese kleine hochstehende Ziffer
 %% voranstellt, ist eine sinnlose Neuerung der Verfallszeit, die jetzt
-%% zum Gl�ck wieder verschwindet. Hier hat nur die Vollziffer mit dem
+%% zum Glück wieder verschwindet. Hier hat nur die Vollziffer mit dem
 %% Punkt dahinter zu stehen." (Paul Renner, Die Kunst der Typographie,
 %% p. 70)
    \newcommand{\mp@fnsep}{.} % Footnote separator, default is a period
