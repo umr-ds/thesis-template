@@ -9,3 +9,8 @@ thesis/**/*.pdf
 thesis/**/*.synctex.gz
 thesis/**/*.thm
 thesis/**/*.toc
+thesis/**/*.bbl
+thesis/**/*.blg
+
+# Mac specific
+.DS_Store
