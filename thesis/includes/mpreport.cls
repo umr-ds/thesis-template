@@ -160,7 +160,7 @@
        \hspace{-\mp@margwd}\rule{\mp@fullwd}{.25mm}%
        \par\vspace*{-.5\baselineskip}%
        \hspace{-\mp@margwd}%
-       \sffamily\bfseries\large\thesection~#2\par\nobreak
+       \sffamily\bfseries\Large\thesection~#2\par\nobreak
      }%
      \sectionmark{#1}%
      \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
@@ -177,7 +177,7 @@
        \hspace{-\mp@margwd}\rule{\mp@fullwd}{.25mm}%
        \par\vspace*{-.5\baselineskip}%
        \hspace{-\mp@margwd}%
-       \sffamily\bfseries\large#1\par\nobreak
+       \sffamily\bfseries\Large#1\par\nobreak
      }%
      \par
    }
@@ -185,8 +185,8 @@
 %% Redefine |\subsection|
    \renewcommand{\subsection}{%
      \@startsection
-     {subsection}{2}{0pt}{-1.5ex plus -1ex minus -.2ex}%
-     {1ex plus .2ex}{\sffamily\bfseries\normalsize}%
+     {subsection}{2}{0pt}{-3ex plus -1ex minus -.1ex}%
+     {1ex plus .2ex}{\sffamily\bfseries\large\underline}%
      }
 
 %% Redefine |\subsubsection|
@@ -274,9 +274,9 @@
 
 %% Footnote style
 %%
-%% "Daﬂ man auch den Noten selbst diese kleine hochstehende Ziffer
+%% "Da√ü man auch den Noten selbst diese kleine hochstehende Ziffer
 %% voranstellt, ist eine sinnlose Neuerung der Verfallszeit, die jetzt
-%% zum Gl¸ck wieder verschwindet. Hier hat nur die Vollziffer mit dem
+%% zum Gl√ºck wieder verschwindet. Hier hat nur die Vollziffer mit dem
 %% Punkt dahinter zu stehen." (Paul Renner, Die Kunst der Typographie,
 %% p. 70)
    \newcommand{\mp@fnsep}{.} % Footnote separator, default is a period

@@ -52,14 +52,14 @@
 \newcommand{\thesisTitle}{Software-definierte dynamische Thesis}
 \newcommand{\thesisAuthor}{John Doe}
 \newcommand{\thesisSupervisor}{Prof. Dr. Bernd Freisleben}
-\newcommand{\thesisReader}{Prof. Dr. Bernd Freisleben}
+\newcommand{\thesisReader}{Mitarbeiter Name}
 \newcommand{\thesisDate}{01. Januar 1970}
 
 % Title page information
 \title{\thesisTitle{}}
 \author{\thesisAuthor{}}
-\supervisor{Mitarbeiter Name}
-\reader{Prof. Dr. Bernd Freisleben}
+\supervisor{\thesisSupervisor{}}
+\reader{\thesisReader{}}
 
 % Setzen der Meta-Daten
 \hypersetup{
@@ -71,6 +71,8 @@
 
 % Konfiguration der Listings im Dokument
 % more info: http://www.theofel.de/archives/2004/10/source_code_in.html
+
+\definecolor{darkgreen}{cmyk}{1,0,1,0.15} % Dark green is more readable.
 \renewcommand{\ttdefault}{pcr}\par
 \lstset{
 	numbers=left, 				% show line numbers on the left
@@ -81,7 +83,7 @@
 	basicstyle=\footnotesize\ttfamily,	% generic style
 	stringstyle=\color{blue},		% style of strings
 	emphstyle=\color{red},			% sytle of ???
-	commentstyle=\color{green},		% style of comments
+	commentstyle=\color{darkgreen},		% style of comments
 	keywordstyle=\bfseries,			% style of keywords
 	tabsize=4,				% indentation
 	showspaces=false,			% show spaces
@@ -172,20 +174,21 @@
 \listoffigures
 \newpage
 
-\phantomsection
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-\include{appendix/acronyms}
-
 
 \phantomsection
 \addcontentsline{toc}{chapter}{Listings}
 \lstlistoflistings
 \newpage
 
+
 \phantomsection
 \addcontentsline{toc}{chapter}{Appendix}
 \chapter*{Appendix}
 
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\include{appendix/acronyms}
 
 
 \include{includes/erklaerung}
